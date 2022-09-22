@@ -26,6 +26,8 @@ class _LoginPageState extends State<LoginPage> {
       isLoading = true;
     });
     try {
+      var user_password;
+      var user_email;
       var res = await http.post(Uri.parse(loginAccount), body: {
         'user_email': user_email.text,
         'user_password': user_password.text
