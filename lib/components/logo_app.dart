@@ -25,11 +25,12 @@ class LogoApp extends StatelessWidget {
           height: 10,
         ),
         Text(
-          "tokoloak",
+          "TokoLoak",
           style:
               TextStyle(fontFamily: 'Abe', fontSize: 30, color: bodyTextColor),
         ),
         Text(
+          
           "Get Anything What You Want",
           style: TextStyle(
               color: bodyTextColor, fontSize: 10, fontFamily: 'Poppin'),

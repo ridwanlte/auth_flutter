@@ -21,7 +21,7 @@ class _FormInputState extends State<FormInput> {
 
   bool isLoading = false;
 
-  TextEditingController user_email = new TextEditingController();
+  var user_email = TextEditingController();
   TextEditingController user_password = new TextEditingController();
 
   Future _loginAccount() async {
@@ -31,7 +31,7 @@ class _FormInputState extends State<FormInput> {
     try {
       print("CEK");
       var res = await http.post(Uri.parse(loginAccount), body: {
-        'user_email': user_email.text,
+        // 'user_email': user_email.text,
         'user_password': user_password.text
       });
       var data = jsonDecode(res.body);
@@ -72,7 +72,6 @@ class _FormInputState extends State<FormInput> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Container(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Email Address",
@@ -89,16 +88,15 @@ class _FormInputState extends State<FormInput> {
                 validator: (val) {
                   bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val.toString());
                   if(val!.isEmpty) return 'Email is required';
-                  else if( val!.isNotEmpty && !emailValid) return 'Format email not Valid';
+                  else if( val.isNotEmpty && !emailValid) return 'Format email not Valid';
                 },
                 autofocus: false,
                 keyboardType: TextInputType.emailAddress,
                 
                 style: TextStyle(
-                    color: primaryColor,
+                    // color: primaryColor,
+                    color: Colors.green,
                     fontFamily: 'Poppin',
-                    // decoration: TextDecoration.underline,
-                    
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
                 decoration: InputDecoration(
@@ -119,6 +117,7 @@ class _FormInputState extends State<FormInput> {
                         color: primaryColor.withOpacity(0.7)),
                     fillColor: Colors.white,
                     prefixIcon: Icon(Icons.mail, color: primaryColor),
+                    
                     hintText: 'mathilda@gmail.com'),
               ),
               SizedBox(
@@ -175,8 +174,19 @@ class _FormInputState extends State<FormInput> {
               // prefixIconColor: primaryColor,
               // iconColor: primaryColor,
               // focusColor: primaryColor,
-              prefixIcon: Icon(Icons.lock, color: primaryColor),
-              hintText: 'Enter Password',
+              prefixIcon: Icon(Icons.lock, color: Colors.black),
+              hintText: 'Enter paword',
+              suffixIcon: IconButton(
+                    icon: Icon(
+                      _isObscure ? Icons.visibility_off : Icons.visibility,
+                    ),
+                    color: primaryColor,
+                    onPressed: () {
+                      setState(() {
+                        _isObscure = !_isObscure;
+                      });
+                    },
+                  ),
             ),
               ),
 
