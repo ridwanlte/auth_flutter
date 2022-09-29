@@ -21,7 +21,7 @@ class _FormInputState extends State<FormInput> {
 
   bool isLoading = false;
 
-  var user_email = TextEditingController();
+  TextEditingController user_email = new TextEditingController();
   TextEditingController user_password = new TextEditingController();
 
   Future _loginAccount() async {
@@ -31,7 +31,7 @@ class _FormInputState extends State<FormInput> {
     try {
       print("CEK");
       var res = await http.post(Uri.parse(loginAccount), body: {
-        'user_email': null,
+        'user_email': '',
         'user_password': user_password.text
       });
       var data = jsonDecode(res.body);
@@ -72,6 +72,7 @@ class _FormInputState extends State<FormInput> {
         autovalidateMode: AutovalidateMode.onUserInteraction,
         child: Container(
           child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
                 "Email Address",
@@ -91,10 +92,10 @@ class _FormInputState extends State<FormInput> {
                   else if( val.isNotEmpty && !emailValid) return 'Format email not Valid';
                 },
                 autofocus: false,
-                keyboardType: TextInputType.emailAddress,
+                keyboardType: TextInputType.number,
                 
                 style: TextStyle(
-                    color: Colors.red,
+                    color: primaryColor,
                     fontFamily: 'Poppin',
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
@@ -123,7 +124,7 @@ class _FormInputState extends State<FormInput> {
                 height: defaultPadding,
               ),
               Text(
-                'Password',
+                'posword',
                 style: TextStyle(
                     fontWeight: FontWeight.w600,
                     color: bodyTextColor,
@@ -170,7 +171,7 @@ class _FormInputState extends State<FormInput> {
                 color: primaryColor.withOpacity(0.7)
               ),
               fillColor: Colors.white,
-              prefixIcon: Icon(Icons.lock, color: Colors.black),
+              prefixIcon: Icon(Icons.lock, color: primaryColor),
               hintText: 'Enter password',
               suffixIcon: IconButton(
                     icon: Icon(
@@ -197,12 +198,13 @@ class _FormInputState extends State<FormInput> {
                       color: bodyTextColor,
                     ))
                   : MaterialButton(
-                      onPressed: () {
+                    onPressed: (){},
+                      onLongPress: () {
                         if (_keyForm.currentState!.validate()) {
                           _loginAccount();
                         }
                       },
-                      minWidth: MediaQuery.of(context).size.width,
+                      minWidth: MediaQuery.of(context).size.width - defaultPadding,
                       height:
                           MediaQuery.of(context).size.height / defaultPadding,
                       color: bodyTextColor,

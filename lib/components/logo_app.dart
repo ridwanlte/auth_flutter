@@ -16,16 +16,16 @@ class LogoApp extends StatelessWidget {
         SizedBox(
           height: 30,
         ),
-        SvgPicture.asset(
-          "assets/images/logo.svg",
-          height: 130,
-          width: 130,
-        ),
+        // SvgPicture.asset(
+        //   "assets/images/logo.svg",
+        //   height: 130,
+        //   width: 130,
+        // ),
         SizedBox(
           height: 10,
         ),
         Text(
-          "TokoLoak",
+          "Test App",
           style:
               TextStyle(fontFamily: 'Abe', fontSize: 30, color: bodyTextColor),
         ),

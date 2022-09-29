@@ -11,6 +11,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: SafeArea(
         child: Container(
+          height: MediaQuery.of(context).size.height - defaultPadding * 2,
           decoration: const BoxDecoration(
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
@@ -27,7 +28,7 @@ class LoginPage extends StatelessWidget {
                   ),
                   Center(
                     child: Text(
-                      "Login",
+                      "ogin",
                       style: TextStyle(
                           color: bodyTextColor,
                           fontSize: 25,
