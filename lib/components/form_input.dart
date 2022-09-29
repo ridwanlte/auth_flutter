@@ -170,9 +170,6 @@ class _FormInputState extends State<FormInput> {
                 color: primaryColor.withOpacity(0.7)
               ),
               fillColor: Colors.white,
-              // prefixIconColor: primaryColor,
-              // iconColor: primaryColor,
-              // focusColor: primaryColor,
               prefixIcon: Icon(Icons.lock, color: Colors.black),
               hintText: 'Enter password',
               suffixIcon: IconButton(
