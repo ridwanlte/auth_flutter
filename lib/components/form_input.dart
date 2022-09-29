@@ -21,8 +21,8 @@ class _FormInputState extends State<FormInput> {
 
   bool isLoading = false;
 
-   TextEditingController user_email = new TextEditingController();
-   TextEditingController user_password = new TextEditingController();
+  TextEditingController user_email = new TextEditingController();
+  TextEditingController user_password = new TextEditingController();
 
   Future _loginAccount() async {
     setState(() {
@@ -75,44 +75,51 @@ class _FormInputState extends State<FormInput> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Email Address',
+                "Email Address",
                 style: TextStyle(
-                    fontWeight: FontWeight.w600,
-                    fontSize: 18,
-                    color: bodyTextColor,
-                    fontFamily: 'Poppin'),
+                  color: bodyTextColor,
+                  fontFamily: 'Poppin',
+                  fontWeight: FontWeight.w700,
+                  fontSize: 15,
+                ),
               ),
               SizedBox(height: defaultPadding / 2),
               TextFormField(
                 controller: user_email,
                 validator: (val) {
-                  return val!.isEmpty ? 'Email is required' : null;
+                  bool emailValid = RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+").hasMatch(val.toString());
+                  if(val!.isEmpty) return 'Email is required';
+                  else if( val!.isNotEmpty && !emailValid) return 'Format email not Valid';
                 },
                 autofocus: false,
-                style: const TextStyle(
-                    color: primaryColor, fontSize: 16, fontFamily: 'Poppin'),
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: bodyTextColor,
-                  hintText: 'Email',
-                  hintStyle:
-                      TextStyle(color: primaryColor, fontFamily: 'Poppin'),
-                  prefixIcon: Icon(
-                    Icons.email,
+                
+                style: TextStyle(
                     color: primaryColor,
-                  ),
-                  contentPadding:
-                      new EdgeInsets.all(defaultPadding/2),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1, color: primaryColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1, color: bodyTextColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+                    fontFamily: 'Poppin',
+                    // decoration: TextDecoration.underline,
+                    
+                    fontWeight: FontWeight.w600,
+                    fontSize: 14),
+                decoration: InputDecoration(
+                    contentPadding: EdgeInsets.all(defaultPadding / 2),
+                    focusedBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(defaultPadding / 2),
+                        borderSide:
+                            BorderSide(width: 0, style: BorderStyle.none)),
+                    border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(defaultPadding / 2),
+                        borderSide:
+                            BorderSide(width: 0, style: BorderStyle.none)),
+                    filled: true,
+                    hintStyle: TextStyle(
+                        fontFamily: 'Poppin',
+                        fontSize: 14,
+                        decoration: TextDecoration.underline,
+                        color: primaryColor.withOpacity(0.7)),
+                    fillColor: Colors.white,
+                    prefixIcon: Icon(Icons.mail, color: primaryColor),
+                    hintText: 'mathilda@gmail.com'),
               ),
               SizedBox(
                 height: defaultPadding,
@@ -128,10 +135,13 @@ class _FormInputState extends State<FormInput> {
               SizedBox(
                 height: defaultPadding / 2,
               ),
+
+
               TextFormField(
                 controller: user_password,
                 validator: (val) {
-                  return val!.isEmpty ? 'Password is required' : null;
+                  if(val== null || val.isEmpty) return 'Password is required';
+                  else if(val.length < 8) return "Minimal password 8 character";
                 },
                 obscureText: _isObscure,
                 autofocus: false,
@@ -139,41 +149,41 @@ class _FormInputState extends State<FormInput> {
                     color: primaryColor, fontSize: 16, fontFamily: 'Poppin'),
                 keyboardType: TextInputType.visiblePassword,
                 decoration: InputDecoration(
-                  filled: true,
-                  fillColor: bodyTextColor,
-                  contentPadding:
-                      new EdgeInsets.all(defaultPadding/2),
-                  hintText: 'Password',
-                  hintStyle:
-                      TextStyle(color: primaryColor, fontFamily: 'Poppin'),
-                  suffixIcon: IconButton(
-                    icon: Icon(
-                      _isObscure ? Icons.visibility_off : Icons.visibility,
-                    ),
-                    color: primaryColor,
-                    onPressed: () {
-                      setState(() {
-                        _isObscure = !_isObscure;
-                      });
-                    },
-                  ),
-                  prefixIcon: Icon(
-                    Icons.lock,
-                    color: primaryColor,
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1, color: primaryColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: BorderSide(width: 1, color: bodyTextColor),
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                ),
+              contentPadding: EdgeInsets.all(defaultPadding/ 2),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(defaultPadding/2),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none
+                )
               ),
+              border: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(defaultPadding/2),
+                borderSide: BorderSide(
+                  width: 0,
+                  style: BorderStyle.none
+                )
+              ),
+              filled: true,
+              hintStyle: TextStyle(
+                fontFamily: 'Poppin',
+                fontSize: 14,
+                
+                color: primaryColor.withOpacity(0.7)
+              ),
+              fillColor: Colors.white,
+              // prefixIconColor: primaryColor,
+              // iconColor: primaryColor,
+              // focusColor: primaryColor,
+              prefixIcon: Icon(Icons.lock, color: primaryColor),
+              hintText: 'Enter Password',
+            ),
+              ),
+
               SizedBox(
                 height: defaultPadding * 2,
               ),
+
               isLoading
                   ? Center(
                       child: CupertinoActivityIndicator(

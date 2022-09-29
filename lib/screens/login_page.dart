@@ -2,8 +2,6 @@ import 'package:auth_flutter/components/form_input.dart';
 import 'package:auth_flutter/components/logo_app.dart';
 import 'package:auth_flutter/constants.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
