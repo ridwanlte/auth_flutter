@@ -8,16 +8,11 @@ import 'constants.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    title: 'Auth Flutter',
-    theme: ThemeData.light().copyWith(  
-      primaryColor: primaryColor,
-      errorColor: bodyTextColor,
-      scaffoldBackgroundColor: primaryColor
-    ),
+    title: 'TES SMK',
+    theme: ThemeData.light().copyWith(
+        primaryColor: primaryColor,
+        errorColor: bodyTextColor,
+        scaffoldBackgroundColor: primaryColor),
     home: SplashScreen(),
-    routes: <String, WidgetBuilder>{
-      '/login': (BuildContext context) => new LoginPage(),
-      '/home_page': (BuildContext context) => new Homepage()
-    },
   ));
 }

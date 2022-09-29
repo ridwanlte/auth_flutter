@@ -13,7 +13,7 @@ class _HomepageState extends State<Homepage> {
   String? userId, userNama, userEmail, token;
 
   @override
-  void initState(){
+  void initState() {
     sessionManager.getPref().then((value) {
       setState(() {
         userId = sessionManager.nId;
@@ -24,6 +24,7 @@ class _HomepageState extends State<Homepage> {
     });
     super.initState();
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,7 +43,10 @@ class _HomepageState extends State<Homepage> {
         child: Container(
           child: Column(
             children: [
-              Text('${userEmail}', style: TextStyle(color: bodyTextColor, fontSize: 18),),
+              Text(
+                '${userEmail}',
+                style: TextStyle(color: bodyTextColor, fontSize: 18),
+              ),
               Text(
                 'Welcome to Home Page',
                 style: TextStyle(color: bodyTextColor, fontSize: 32),

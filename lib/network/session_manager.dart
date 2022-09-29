@@ -5,7 +5,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 class SessionManager {
   String? nUserNama, nUserEmail, nId, nToken;
 
-  void savePref(String? nId, String? nUserNama, String? nUserEmail, String? nToken) async {
+  void savePref(String? nId, String? nUserNama, String? nUserEmail,
+      String? nToken) async {
     SharedPreferences pref = await SharedPreferences.getInstance();
     pref.setString('email', nUserEmail ?? '');
     pref.setString('usernama', nUserNama ?? '');
