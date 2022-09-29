@@ -31,7 +31,7 @@ class _FormInputState extends State<FormInput> {
     try {
       print("CEK");
       var res = await http.post(Uri.parse(loginAccount), body: {
-        // 'user_email': user_email.text,
+        'user_email': null,
         'user_password': user_password.text
       });
       var data = jsonDecode(res.body);
@@ -95,7 +95,7 @@ class _FormInputState extends State<FormInput> {
                 
                 style: TextStyle(
                     // color: primaryColor,
-                    color: Colors.green,
+                    color: Colors.red,
                     fontFamily: 'Poppin',
                     fontWeight: FontWeight.w600,
                     fontSize: 14),
@@ -175,7 +175,7 @@ class _FormInputState extends State<FormInput> {
               // iconColor: primaryColor,
               // focusColor: primaryColor,
               prefixIcon: Icon(Icons.lock, color: Colors.black),
-              hintText: 'Enter paword',
+              hintText: 'Enter password',
               suffixIcon: IconButton(
                     icon: Icon(
                       _isObscure ? Icons.visibility_off : Icons.visibility,
@@ -183,7 +183,7 @@ class _FormInputState extends State<FormInput> {
                     color: primaryColor,
                     onPressed: () {
                       setState(() {
-                        _isObscure = !_isObscure;
+                        _isObscure = _isObscure;
                       });
                     },
                   ),
