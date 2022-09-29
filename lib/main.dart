@@ -11,6 +11,7 @@ void main() {
     title: 'Auth Flutter',
     theme: ThemeData.light().copyWith(  
       primaryColor: primaryColor,
+      errorColor: bodyTextColor,
       scaffoldBackgroundColor: primaryColor
     ),
     home: SplashScreen(),
