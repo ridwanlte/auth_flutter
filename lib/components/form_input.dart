@@ -94,7 +94,6 @@ class _FormInputState extends State<FormInput> {
                 keyboardType: TextInputType.emailAddress,
                 
                 style: TextStyle(
-                    // color: primaryColor,
                     color: Colors.red,
                     fontFamily: 'Poppin',
                     fontWeight: FontWeight.w600,
